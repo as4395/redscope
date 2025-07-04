@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain } from 'electron';
+import { app, BrowserWindow } from 'electron';
 import path from 'path';
 import { setupIpcHandlers } from './ipc';
 
@@ -7,7 +7,7 @@ const createWindow = async () => {
     width: 1280,
     height: 800,
     webPreferences: {
-      preload: path.join(__dirname, '../preload.js'),
+      preload: path.join(__dirname, '../preload.js'), // Electron bridge to renderer
       contextIsolation: true,
       nodeIntegration: false,
     },
@@ -16,17 +16,16 @@ const createWindow = async () => {
   });
 
   if (process.env.NODE_ENV === 'development') {
-    await win.loadURL('http://localhost:5173'); // Vite development server
+    await win.loadURL('http://localhost:5173');
     win.webContents.openDevTools();
   } else {
     await win.loadFile(path.join(__dirname, '../../dist/index.html'));
   }
 };
 
-// Handle app lifecycle
 app.whenReady().then(() => {
   createWindow();
-  setupIpcHandlers(); // Register IPC channels
+  setupIpcHandlers(); // Register IPC listeners
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
