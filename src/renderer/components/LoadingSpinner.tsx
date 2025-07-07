@@ -1,9 +1,11 @@
+// src/renderer/components/LoadingSpinner.tsx
+
 import React from 'react';
 
 const LoadingSpinner: React.FC = () => {
   return (
-    <div className="flex justify-center items-center py-10">
-      <div className="w-8 h-8 border-4 border-red-500 border-t-transparent rounded-full animate-spin" />
+    <div className="flex justify-center items-center py-4">
+      <div className="h-6 w-6 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
     </div>
   );
 };
