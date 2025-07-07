@@ -1,24 +1,24 @@
 import React from 'react';
 
-interface StatusBadgeProps {
-  status: 'pending' | 'running' | 'success' | 'error';
+interface Props {
+  status: 'success' | 'error' | 'running' | 'idle';
 }
 
-const statusMap: Record<string, { label: string; color: string }> = {
-  pending: { label: 'Pending', color: 'bg-yellow-500' },
-  running: { label: 'Running', color: 'bg-blue-500' },
-  success: { label: 'Success', color: 'bg-green-600' },
-  error: { label: 'Error', color: 'bg-red-600' },
+const statusMap = {
+  success: { text: 'Success', color: 'bg-green-600' },
+  error: { text: 'Error', color: 'bg-red-600' },
+  running: { text: 'Running', color: 'bg-yellow-500' },
+  idle: { text: 'Idle', color: 'bg-gray-400' },
 };
 
-const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
-  const badge = statusMap[status];
+const StatusBadge: React.FC<Props> = ({ status }) => {
+  const { text, color } = statusMap[status];
 
   return (
     <span
-      className={`text-xs text-white px-2 py-1 rounded-full ${badge.color}`}
+      className={`text-white text-xs font-medium px-2 py-1 rounded ${color}`}
     >
-      {badge.label}
+      {text}
     </span>
   );
 };
