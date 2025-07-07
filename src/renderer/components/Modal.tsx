@@ -1,28 +1,25 @@
 import React from 'react';
 
 interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+  title: string;
   children: React.ReactNode;
-  title?: string;
+  onClose: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }) => {
-  if (!isOpen) return null;
-
+const Modal: React.FC<ModalProps> = ({ title, children, onClose }) => {
   return (
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-40 flex items-center justify-center">
-      <div className="bg-white dark:bg-gray-800 rounded shadow-lg w-full max-w-md p-6 relative">
-        {title && (
-          <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">{title}</h3>
-        )}
-        <div>{children}</div>
-        <button
-          onClick={onClose}
-          className="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-sm"
-        >
-          ✕
-        </button>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+      <div className="bg-white dark:bg-gray-900 rounded-lg w-[90%] max-w-xl p-6 shadow-lg">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{title}</h3>
+          <button
+            onClick={onClose}
+            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+          >
+            ✕
+          </button>
+        </div>
+        <div className="text-gray-800 dark:text-gray-200">{children}</div>
       </div>
     </div>
   );
