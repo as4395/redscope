@@ -1,17 +1,21 @@
-export function saveToLocal<T>(key: string, value: T): void {
+export function saveToLocalStorage<T>(key: string, value: T): void {
   try {
     localStorage.setItem(key, JSON.stringify(value));
-  } catch (err) {
-    console.error('Error saving to localStorage', err);
+  } catch {
+    console.warn(`Failed to store "${key}" in localStorage`);
   }
 }
 
-export function loadFromLocal<T>(key: string): T | null {
+export function loadFromLocalStorage<T>(key: string): T | null {
   try {
     const raw = localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : null;
-  } catch (err) {
-    console.error('Error reading from localStorage', err);
+    return raw ? JSON.parse(raw) as T : null;
+  } catch {
+    console.warn(`Failed to read "${key}" from localStorage`);
     return null;
   }
+}
+
+export function removeFromLocalStorage(key: string): void {
+  localStorage.removeItem(key);
 }
