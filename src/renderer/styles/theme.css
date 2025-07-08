@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #ffffff;
+    --color-text: #1a1a1a;
+    --color-accent: #c60000;
+    --color-muted: #e5e7eb;
+  }
+
+  .dark {
+    --color-bg: #0f0f0f;
+    --color-text: #f5f5f5;
+    --color-accent: #ff2c2c;
+    --color-muted: #2c2c2c;
+  }
+
+  body {
+    @apply bg-[var(--color-bg)] text-[var(--color-text)] transition-colors duration-300;
+  }
+}
