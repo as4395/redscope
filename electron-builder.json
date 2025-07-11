@@ -1,0 +1,22 @@
+{
+  "appId": "com.redscope.app",
+  "productName": "RedScope",
+  "directories": {
+    "output": "dist",
+    "buildResources": "build"
+  },
+  "files": ["dist/**/*", "main.js", "package.json"],
+  "mac": {
+    "category": "public.app-category.utilities",
+    "target": "dmg"
+  },
+  "win": {
+    "target": "nsis",
+    "icon": "build/icon.ico"
+  },
+  "linux": {
+    "target": "AppImage",
+    "icon": "build"
+  },
+  "publish": null
+}
